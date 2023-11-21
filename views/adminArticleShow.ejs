@@ -4,9 +4,7 @@
 	<meta charset="UTF-8">
     <link rel="stylesheet" href="/css/1.css">
 </head>
-
 <body>
-	
 <%= data[0].titleArticle %>  
 <p>
     <%= data[0].textArticle %>
@@ -38,10 +36,10 @@
 			let article={
                 'idArticle':location.href.split("/").at(-1),
 				'titleArticle':document.querySelector("#titleArticle").value,
-				'textArticle':document.querySelector("#textArticle").value,
+				'textArticle':document.querySelector("#textArticle").innerHTML,
 				'descriptionArticle':document.querySelector("#descriptionArticle").value,
 			}
-			let promise=fetch('http://localhost:3000/admin/editArticle',{
+			let promise=fetch('http://localost:3000/admin/editArticle',{
 					method: 'POST',
 					headers: {
 						'Content-Type': 'application/json;charset=utf-8'
@@ -49,7 +47,9 @@
 					body: JSON.stringify(article)
 	})
     .then(response=> alert("Данные изменены"))
-		}
+	.catch(response => alert("error"+response)); 
+  };
+	
 	</script>
     <script>
         document.querySelector("#deleteArticle").onclick=function()
@@ -66,6 +66,9 @@
 					body: JSON.stringify(article)
 	})
     .then(response=> document.location="http://localhost:3000/admin/")
+	.catch((error) => {
+     console.log(error); 
+  });
 		}
     </script>
 </body>
