@@ -27,8 +27,8 @@ exports.getOne=async function(req,res){
         arr[i]=data[0][i];
     }
 })
-  .catch(error=>{
-  console.log(error);
+  .catch(error1=>{
+  console.log(error1);
   });
   return arr;
 }
